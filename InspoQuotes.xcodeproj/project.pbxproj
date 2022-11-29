@@ -26,6 +26,7 @@
 		65EDE4EC2930697300AFB71E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		65EDE4EE2930697300AFB71E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65EDE4F4293069D400AFB71E /* QuoteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteTableViewController.swift; sourceTree = "<group>"; };
+		65EDE4F629312AFB00AFB71E /* PremiumQuotes.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = PremiumQuotes.storekit; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +67,7 @@
 				65EDE4EB2930697300AFB71E /* LaunchScreen.storyboard */,
 				65EDE4EE2930697300AFB71E /* Info.plist */,
 				65EDE4E62930697300AFB71E /* InspoQuotes.xcdatamodeld */,
+				65EDE4F629312AFB00AFB71E /* PremiumQuotes.storekit */,
 			);
 			path = InspoQuotes;
 			sourceTree = "<group>";
