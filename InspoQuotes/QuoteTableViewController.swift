@@ -104,9 +104,6 @@ class QuoteTableViewController: UITableViewController, SKPaymentTransactionObser
                 
                 showPremiumQuotes()
                 
-                //to keep hold of the data of whether the user purchased in-app purchase or not
-                UserDefaults.standard.set(true, forKey: productID)
-                
                 SKPaymentQueue.default().finishTransaction(transaction)
                 
             } else if transaction.transactionState == .failed {
@@ -117,11 +114,21 @@ class QuoteTableViewController: UITableViewController, SKPaymentTransactionObser
                 }
                 
                 SKPaymentQueue.default().finishTransaction(transaction)
+            } else if transaction.transactionState == .restored {
+                showPremiumQuotes()
+                print("Transaction restored")
+                
+                
+                
+                SKPaymentQueue.default().finishTransaction(transaction)
             }
         }
     }
     
     func showPremiumQuotes() {
+        //to keep hold of the data of whether the user purchased in-app purchase or not
+        UserDefaults.standard.set(true, forKey: productID)
+        navigationItem.setRightBarButton(nil, animated: true)
         quotesToShow.append(contentsOf: premiumQuotes)
         //to update data and number of cells
         tableView.reloadData()
@@ -140,7 +147,8 @@ class QuoteTableViewController: UITableViewController, SKPaymentTransactionObser
         }
     }
     
-    
     @IBAction func restorePressed(_ sender: UIBarButtonItem) {
+        SKPaymentQueue.default().restoreCompletedTransactions()
+        
     }
 }
