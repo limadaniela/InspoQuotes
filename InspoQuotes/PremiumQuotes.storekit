@@ -4,7 +4,21 @@
 
   ],
   "products" : [
-
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "6989E76D",
+      "localizations" : [
+        {
+          "description" : "PremiumQuotes",
+          "displayName" : "PremiumQuotes",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.dl.InspoQuotes.PremiumQuotes",
+      "referenceName" : "PremiumQuotes",
+      "type" : "NonConsumable"
+    }
   ],
   "settings" : {
 

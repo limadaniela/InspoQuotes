@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import StoreKit
 
-class QuoteTableViewController: UITableViewController {
+class QuoteTableViewController: UITableViewController, SKPaymentTransactionObserver {
+
+    let productID = "com.dl.InspoQuotes.PremiumQuotes"
     
     var quotesToShow = [
             "Our greatest glory is not in never falling, but in rising every time we fall. — Confucius",
@@ -29,11 +32,12 @@ class QuoteTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        SKPaymentQueue.default().add(self)
 
     }
 
     // MARK: - Table view data source
-
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return  quotesToShow.count + 1
@@ -54,11 +58,9 @@ class QuoteTableViewController: UITableViewController {
             //disclosureIndicator can be used to indicate to the user can press on the cell and something will happen
             cell.accessoryType = .disclosureIndicator
         }
-        
 
         return cell
     }
-
 
     // MARK: - Table view delegate methods
     
@@ -69,17 +71,33 @@ class QuoteTableViewController: UITableViewController {
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
-
-
     
     // MARK: - In-App purchase methods
     
+    //to trigger in-app purchases
     func buyPremiumQuotes() {
-        
+        if SKPaymentQueue.canMakePayments() {
+            let paymentRequest = SKMutablePayment()
+            paymentRequest.productIdentifier = productID
+            SKPaymentQueue.default().add(paymentRequest)
+        } else {
+            //Can't make payments
+            print("User can't make payments")
+        }
     }
     
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        for transaction in transactions {
+            if transaction.transactionState == .purchased {
+                //User payment sucessful
+                print("Transaction successful")
+            } else if transaction.transactionState == .failed {
+                //Payment failed
+                print("Transaction failed")
+            }
+        }
+    }
     
     @IBAction func restorePressed(_ sender: UIBarButtonItem) {
     }
-    
 }
